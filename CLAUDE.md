@@ -40,6 +40,10 @@ agent (avatar: `assets/johnny8.png`).
 
 ## Running the app
 
+- `./start.sh` — single entry point: preflight (Node 20+, deps, free
+  ports, fd limit), then server (3001) + client (5173); prints `READY` only
+  after both answer over HTTP. `./start.sh prod` builds and serves on 3001.
+  `SERVER_PORT` / `CLIENT_PORT` env vars override ports.
 - `npm install` (once, from the repo root — npm workspaces)
 - `npm run dev` — starts server (3001) and client (5173) together
 - `npm run build` — production build of the client into `client/dist/`
