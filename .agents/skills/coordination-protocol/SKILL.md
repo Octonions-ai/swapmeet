@@ -35,6 +35,23 @@ Every issue comment starts with a prefix so the reader can route it:
 
 Post with `harness/tools/gh-post.sh <issue> "[lane:fe]" "..."`.
 
+## Author stamping
+
+Every comment and PR is stamped with **who wrote it**, so humans and agents can
+follow the conversation without relying on the GitHub avatar (all clones share one
+account). The stamp is a visible line plus a machine-readable marker:
+
+```
+<!-- author:1-prime-swapmeet role:lane:fe -->
+**Author:** `1-prime-swapmeet` · `[lane:fe]`
+```
+
+- `harness/tools/gh-post.sh` and `lane-claim.sh` add it automatically.
+- A PR body starts with the same stamp (see `lane-developer`).
+- `harness/tools/whoami.sh` resolves the clone name (from `$SWAPMEET_CLONE` or the
+  repo directory name) and its role. `clone-setup.sh` also sets each clone's git
+  identity, so commits are authored as `<n>-prime-swapmeet`.
+
 ## Status vocabulary
 
 Use exactly these words when reporting status:

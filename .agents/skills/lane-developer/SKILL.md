@@ -26,7 +26,9 @@ lane, prove your work, and talk only through the issue.
    the evidence named in the acceptance section (server log line, curl response,
    rendered page). No "done" without it.
 5. **Commit and push.** `feat: ... (refs #<n>)`, then push the branch.
-6. **Open the PR.** `gh pr create --title "<lane>: ... (refs #<n>)" --body "Closes #<n>"`.
+6. **Open the PR.** Stamp it as the author and reference the issue:
+   `gh pr create --title "<lane>: ... (refs #<n>)" --body "$(harness/tools/whoami.sh --stamp)
+   Closes #<n>"`.
 7. **Report.** Post `[lane:<lane>] done: PR #<pr>` on the issue.
 8. **Poll and respond.** `harness/tools/gh-poll.sh <n>`; act on new `[coord]`
    comments (review feedback, a contract change, a rebase request), then re-poll.
