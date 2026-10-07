@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Create the three lane clones next to this repo.
+# Create the three lane clones next to this repo, each with its own git identity
+# so commits and PRs are attributable to the clone that made them.
 # Usage: clone-setup.sh [base-dir]   (default: the repo's parent directory)
 set -euo pipefail
 
@@ -15,6 +16,10 @@ for n in 1 2 3; do
     git clone "$origin" "$dest"
     echo "cloned: ${dest}"
   fi
+  # Stamp this clone's identity on its commits.
+  git -C "$dest" config user.name "${n}-prime-swapmeet"
+  git -C "$dest" config user.email "${n}-prime-swapmeet@swapmeet.local"
 done
 
-echo "roles: 1=frontend, 2=backend, 3=coordinator"
+echo "roles: 1=frontend (lane:fe), 2=backend (lane:be), 3=coordinator"
+echo "each clone commits as <n>-prime-swapmeet"
